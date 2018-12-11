@@ -1,8 +1,24 @@
 package com.privalia.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class Main {
 
+	private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
 	public static void main(String[] args) {
+
+		// Debug.
+		logger.debug("Depuracion");
+		// Info.
+		logger.info("Informacion");
+		// Trace.
+		logger.trace("Traza");
+		// Warning.
+		logger.warn("Advertencia");
+		// Error.
+		logger.error("Error");
 
 		Student student = new Student();
 		student.setIdStudent(1);
