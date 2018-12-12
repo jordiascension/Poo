@@ -8,10 +8,22 @@
 
 // Apply the java-library plugin to add support for Java Library
 apply plugin: 'java'
+apply plugin: 'eclipse'
 
 jar {
     manifest {
         attributes 'Main-Class': 'com.privalia.model.Main'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+sourceSets {
+    main {
+        resources {
+            srcDirs "src/main/resources"
+        }
     }
 }
 
@@ -22,6 +34,9 @@ repositories {
     jcenter()
 }
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 dependencies {
 
     // This dependency is used internally, and not exposed to consumers on their own compile classpath.
@@ -30,9 +45,8 @@ dependencies {
     // Use JUnit test framework
     testImplementation 'junit:junit:4.12'
     
-    compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.6.1'
+   compile 'org.apache.logging.log4j:log4j-slf4j-impl:2.6.1'
     // https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core
 	compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.6.1'
-    
 }
 
